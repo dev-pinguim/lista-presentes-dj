@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Presentes - Dani e João</title>
+    <style>
+        /* Importando as fontes: Montserrat (textos) e Alex Brush (fonte cursiva elegante para os nomes) */
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-site: #121212; 
+            --card-bg: #F8F9F4; 
+            --text-color: #000000;
+            --preto: #000000;
+            --cinza-escuro: #555555;
+            --cinza-claro: #888888;
+            --branco: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-site);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Cartão principal contínuo */
+        .card {
+            background-color: var(--card-bg);
+            max-width: 850px;
+            margin: 0 auto;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        /* =========================================
+           CABEÇALHO
+           ========================================= */
+        .hero {
+            position: relative;
+            padding: 80px 20px 60px 20px;
+            text-align: center;
+            margin-bottom: 40px; 
+        }
+
+        .shape { position: absolute; border-radius: 50%; z-index: 0; }
+        .bg-gray { background-color: var(--cinza-escuro); }
+        .bg-black { background-color: var(--preto); }
+
+        .top-left-gray { width: 160px; height: 160px; top: -40px; left: -80px; }
+        .top-left-black { width: 140px; height: 140px; top: -70px; left: 30px; }
+        .bottom-right-black { width: 180px; height: 180px; bottom: -90px; right: 60px; }
+        .bottom-right-gray { width: 220px; height: 220px; bottom: -80px; right: -110px; }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .names { 
+            font-family: 'Alex Brush', cursive; 
+            font-size: 5.5em; 
+            color: var(--preto); 
+            margin: 10px 0 30px 0; 
+            font-weight: normal; 
+            line-height: 1;
+        }
+
+        .hero-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .hero-icons svg {
+            width: 50px;
+            height: 50px;
+            stroke: var(--cinza-claro);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* =========================================
+           TÍTULOS E RISQUINHOS (SVG)
+           ========================================= */
+        .title-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        h1, h3 { 
+            font-weight: 700; 
+            color: var(--preto);
+            margin: 0;
+            text-transform: uppercase;
+        }
+        
+        h1 { font-size: 3em; letter-spacing: 1px; text-transform: none; }
+        h3 { font-size: 1.8em; letter-spacing: 3px; }
+
+        .title-sparks {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: -30px;
+            right: -45px;
+        }
+
+        /* =========================================
+           SEÇÕES GERAIS
+           ========================================= */
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 70px;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+        section:last-child { margin-bottom: 50px; }
+
+        p { font-size: 1.1em; line-height: 1.6; max-width: 700px; margin: 0 auto 15px auto;}
+
+        /* Orientações */
+        .orientacoes-list { text-align: left; max-width: 700px; margin: 0 auto; list-style: none; padding: 0; }
+        .orientacoes-list li { margin-bottom: 25px; font-size: 1.1em; position: relative; padding-left: 20px; line-height: 1.6; }
+        .orientacoes-list li::before { content: '•'; position: absolute; left: 0; font-weight: bold; }
+        
+        .map-link { color: var(--preto); text-decoration: underline; transition: color 0.3s; font-weight: bold;}
+        .map-link:hover { color: var(--cinza-claro); }
+
+        /* Botão WhatsApp Inline */
+        .whatsapp-inline-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25D366;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85em;
+            vertical-align: middle;
+            margin-left: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 5px rgba(37, 211, 102, 0.4);
+        }
+        .whatsapp-inline-btn:hover {
+            background-color: #1EBE57;
+            transform: scale(1.05);
+            color: #FFFFFF;
+        }
+        .whatsapp-inline-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            margin-right: 6px;
+        }
+
+        /* QR Code Embutido */
+        .qr-code-img {
+            width: 180px;
+            height: 180px;
+            margin: 20px auto 30px auto; 
+            border-radius: 10px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Importante */
+        .importante-box { border: 2px solid var(--cinza-escuro); padding: 40px; max-width: 650px; border-radius: 20px; }
+        .verse { font-style: italic; margin-top: 30px; font-size: 1.1em; font-weight: normal; }
+        .reference { font-weight: bold; display: block; margin-top: 10px; }
+
+        /* =========================================
+           PALETA DE CORES
+           ========================================= */
+        .palette-container { 
+            display: flex; 
+            gap: 40px; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            margin-top: 10px;
+        }
+        .color-item { display: flex; flex-direction: column; align-items: center; }
+        .color-circle { 
+            width: 110px; 
+            height: 110px; 
+            border-radius: 50%; 
+            margin-bottom: 15px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+        }
+        .c-preto { background-color: var(--preto); }
+        .c-cinza-escuro { background-color: var(--cinza-escuro); }
+        .c-cinza-claro { background-color: #BDBDBD; }
+        .c-branco { background-color: var(--branco); border: 2px solid #E0E0E0; }
+        .color-label { font-weight: 700; font-size: 1em; text-align: center; color: var(--preto); }
+
+        /* Grid de Presentes */
+        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; width: 100%; text-align: center; }
+        .gift-item { font-size: 1.1em; padding: 10px; text-transform: uppercase; text-decoration: underline; color: #000; display: block; transition: color 0.3s; }
+        .gift-item:hover { color: var(--cinza-claro); }
+        a { text-decoration: none; }
+
+        /* Efeito de surgimento ao rolar */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* =========================================
+           AJUSTES PARA CELULAR (MOBILE)
+           ========================================= */
+        @media(max-width: 600px) {
+            body { 
+                padding: 0; 
+                background-color: var(--card-bg); 
+            }
+            .card { 
+                border-radius: 0; 
+                box-shadow: none; 
+                padding-bottom: 20px; 
+            }
+            
+            .hero { padding-bottom: 120px; } 
+            .hero h1 { font-size: 2em; }
+            .names { font-size: 3.5em; }
+            
+            .top-left-gray { width: 100px; height: 100px; top: -20px; left: -40px; }
+            .top-left-black { width: 90px; height: 90px; top: -40px; left: 20px; }
+            .bottom-right-black { width: 120px; height: 120px; bottom: -30px; right: 20px; }
+            .bottom-right-gray { width: 150px; height: 150px; bottom: -20px; right: -50px; }
+
+            h3 { font-size: 1.4em; }
+            section { padding: 0 20px; }
+            .hero-icons { gap: 25px; }
+            .title-sparks { width: 35px; height: 35px; top: -20px; right: -30px; }
+            .importante-box { padding: 30px 20px; }
+
+            .palette-container { gap: 15px; }
+            .color-circle { width: 70px; height: 70px; }
+            .color-label { font-size: 0.85em; }
+            
+            /* Ajuste para o botão do WhatsApp não quebrar feio no celular */
+            .whatsapp-inline-btn { margin-top: 10px; margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        
+        <div class="hero">
+            <div class="shape bg-gray top-left-gray"></div>
+            <div class="shape bg-black top-left-black"></div>
+            <div class="shape bg-black bottom-right-black"></div>
+            <div class="shape bg-gray bottom-right-gray"></div>
+
+            <div class="hero-content">
+                <div class="title-wrapper" style="margin-bottom: 10px;">
+                    <h1>Lista de Presentes</h1>
+                    <svg class="title-sparks" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 12 28 Q 18 15 22 5" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                        <path d="M 22 33 Q 32 23 42 16" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                        <path d="M 30 40 Q 40 38 48 41" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </div>
+                
+                <h2 class="names">Danielle e João Carlos</h2>
+                
+                <div class="hero-icons">
+                    <svg viewBox="0 0 40 40">
+                        <path d="M8,28 L32,28 C34,28 35,26 34,22 L28,12 L14,12 C10,12 8,16 8,28 Z" />
+                        <path d="M14,12 L16,6 L26,6 C29,6 32,8 32,12" />
+                        <line x1="6" y1="32" x2="34" y2="32" />
+                        <circle cx="15" cy="24" r="1.5" fill="var(--cinza-claro)"/>
+                        <circle cx="20" cy="24" r="1.5" fill="var(--cinza-claro)"/>
+                        <circle cx="25" cy="24" r="1.5" fill="var(--cinza-claro)"/>
+                    </svg>
+                    <svg viewBox="0 0 40 40">
+                        <rect x="14" y="26" width="12" height="10" rx="2"/>
+                        <polygon points="15,26 25,26 27,6 13,6"/>
+                        <rect x="11" y="4" width="18" height="2" rx="1"/>
+                        <path d="M27,10 L32,10 L32,20 L26,20"/>
+                        <circle cx="17" cy="31" r="1.5" fill="var(--cinza-claro)"/>
+                        <circle cx="23" cy="31" r="1.5" fill="var(--cinza-claro)"/>
+                    </svg>
+                    <svg viewBox="0 0 40 40">
+                        <rect x="12" y="4" width="16" height="30" rx="2"/>
+                        <line x1="12" y1="16" x2="28" y2="16"/>
+                        <line x1="16" y1="8" x2="16" y2="12"/>
+                        <line x1="16" y1="20" x2="16" y2="26"/>
+                        <line x1="15" y1="34" x2="15" y2="38"/>
+                        <line x1="25" y1="34" x2="25" y2="38"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <section class="fade-in">
+            <div class="title-wrapper">
+                <h3>ORIENTAÇÕES</h3>
+                <svg class="title-sparks" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 28 Q 18 15 22 5" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 22 33 Q 32 23 42 16" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 30 40 Q 40 38 48 41" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                </svg>
+            </div>
+            
+            <ul class="orientacoes-list">
+                <li>Entregar os presentes na casa da Danielle<br>
+                    <strong>Endereço: 
+                        <a href="https://maps.app.goo.gl/r1GW8F7ffJH2fFSG8" target="_blank" class="map-link">
+                            Rua Professor Jeremias, 591 casa 1<br>Vila Urupês - Suzano-SP, 08615-050
+                        </a>
+                    </strong>
+                </li>
+                <li>
+                    Caso queira, poderá ficar à vontade para falar com a Danielle sobre os presentes, evitando assim que ocorra repetições de itens. Só clicar no icone para falar com ela 👉 
+                    <a href="https://wa.me/5511931490081" target="_blank" class="whatsapp-inline-btn" title="Falar no WhatsApp">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                        </svg>
+                        WhatsApp
+                    </a>
+                </li>
+                <li>Os produtos da lista estão em formato de link, use como referência, você pode decidir comprar na loja de sua preferência.</li>
+            </ul>
+        </section>
+
+        <section class="fade-in">
+            <p><strong>Caso prefira nos ajudar de outra forma, poderá nos enviar um pix usando o QR code ou a chave abaixo:</strong></p>
+            
+            <img src="image_e61ea8.png" alt="QR Code Pix Itaú" class="qr-code-img">
+            
+            <p>Chave Pix - Itaú Unibanco<br>
+            <strong style="font-size: 1.2em;">(11) 97875-6527</strong></p>
+        </section>
+
+        <section class="fade-in">
+            <div class="importante-box">
+                <div class="title-wrapper">
+                    <h3>IMPORTANTE</h3>
+                    <svg class="title-sparks" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 12 28 Q 18 15 22 5" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                        <path d="M 22 33 Q 32 23 42 16" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                        <path d="M 30 40 Q 40 38 48 41" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    </svg>
+                </div>
+
+                <p><strong>Não queremos que se sinta obrigado a nos dar algo, nem pensem que ficaremos tristes se não recebermos um presente.</strong></p>
+                <p><strong>Caso queira nos ajudar, que isso seja feito de coração e de acordo com suas possibilidades!</strong></p>
+                
+                <p class="verse">"Faça cada um conforme resolveu no coração, não a contragosto nem por obrigação, pois Deus ama quem dá com alegria."<br>
+                <span class="reference">2 Coríntios 9:7</span></p>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="title-wrapper" style="margin-bottom: 5px;">
+                <h3>PALETA DE CORES</h3>
+                <svg class="title-sparks" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 28 Q 18 15 22 5" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 22 33 Q 32 23 42 16" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 30 40 Q 40 38 48 41" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                </svg>
+            </div>
+            
+            <p style="font-size: 1.4em; margin-bottom: 30px;">para os produtos</p>
+            
+            <div class="palette-container">
+                <div class="color-item">
+                    <div class="color-circle c-preto"></div>
+                    <span class="color-label">PRETO</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-circle c-cinza-escuro"></div>
+                    <span class="color-label">CINZA<br>ESCURO</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-circle c-cinza-claro"></div>
+                    <span class="color-label">CINZA<br>CLARO</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-circle c-branco"></div>
+                    <span class="color-label">BRANCO</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="title-wrapper">
+                <h3>COZINHA</h3>
+                <svg class="title-sparks" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 28 Q 18 15 22 5" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 22 33 Q 32 23 42 16" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 30 40 Q 40 38 48 41" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                </svg>
+            </div>
+            
+            <div class="gift-grid">
+                <a href="https://www.amazon.com.br/dp/B0BL1DN1RK/?coliid=IJRKJ2ACRZHVA&colid=1OZGP8P8JUKNP&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">GARRAFA DE CAFÉ</a>
+                <a href="https://www.amazon.com.br/dp/B076MFY1Q7/?coliid=I1ZSJWI3AE0QH5&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE COPOS</a>
+                <a href="https://www.amazon.com.br/dp/B0BTMS84Y9/?coliid=I1HZN7FQI4XHYA&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">PORTA TEMPEROS</a>
+                <a href="https://www.amazon.com.br/dp/B07R5PWMNJ/?coliid=I3QZ81ZV9RHH2R&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">ESCORREDOR DE PΙΑ</a>
+                <a href="https://www.amazon.com.br/dp/B076X6SXH7/?coliid=IOLHAGQPYVAO&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE TAÇAS</a>
+                <a href="https://www.amazon.com.br/dp/B0CHW28WNF/?coliid=IHE2JJEP8T5U6&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO UTENSÍLIOS</a>
+                <a href="https://www.amazon.com.br/dp/B07TTNZG21/?coliid=I1YYCZL80MVHIO&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE TAÇAS DE SOBREMESA</a>
+                <a href="https://www.amazon.com.br/dp/B09418784M/?coliid=I12VIAJ34750M6&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE PRATOS RASO</a>
+                <a href="https://www.amazon.com.br/dp/B07R2N8BJ7/?coliid=ISQBTEVBUQ715&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">TAPIOQUEIRA</a>
+                <a href="https://www.amazon.com.br/dp/B0C1MK3178/?coliid=I1LRMC67RHB7SG&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">PROCESSADOR DE ALIMENTOS</a>
+                <a href="https://www.amazon.com.br/dp/B07QYPLPTC/?coliid=I2VEYEAERC7UM0&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">FRIGIDEIRA</a>
+                <a href="https://www.amazon.com.br/dp/B0778V9J93/?coliid=I1WV6XLCTMDPY5&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE PRATOS FUNDO</a>
+                <a href="https://www.amazon.com.br/Faqueiro-Inox-Buzios-Tramontina-23799/dp/B0789M146B/ref=sr_1_3?crid=1N8HF0AF5BY5T&dib=eyJ2IjoiMSJ9.s3TZ3NmdtUGxTS7HJk65MIuR0hsmlISnH0nKJoBKYa-Du-HLqb6SYLfpEIgGP-6ttapM6GmU8MC8GAkzLt0XKLKKQccau1i8euVZZfBKoppBvssFbW9KRn4HfvnRJkJ0Xfx95ffpBrrtGcOjLN-SCRCnPjVEYa1sTHVuzo-NYJqP3UJwblryGzIIu8pJ8FdiJPM6x0ACWahKha9NGC4T2GJdJPR3WoFMUUn4R3IKEGo.6zoW8BrnCc3UPFIz6I9BaEKuuK4JBir3TjJwGrg5NDs&dib_tag=se&keywords=jogo+de+talheres&qid=1772672208&s=kitchen&sprefix=jogo+ta%2Ckitchen%2C347&sr=1-3" class="gift-item" target="_blank">JOGO DE TALHERES</a>
+                <a href="https://www.havan.com.br/jogo-de-assadeiras-retangular-havan-casa-oslo-3-pecas-branco/p" class="gift-item" target="_blank">JOGO DE TRAVESSAS</a>
+                <a href="https://www.amazon.com.br/dp/B008R7SRXU/?coliid=IVIVPXYVBTMJJ&colid=1OZGP8P8JUKNP&ref_=list_c_wl_lv_ov_lig_dp_it&th=1" class="gift-item" target="_blank">FORMA DE BOLO</a>
+                <a href="https://www.amazon.com.br/dp/B09R82XT4V/?coliid=I36QSGEVW4WUXG&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JARRA DE SUCO</a>
+                <a href="https://www.amazon.com.br/dp/B09BBKG7R3/?coliid=I382ZZ6FJUX1M1&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">CONJUNTO DE BOWLS</a>
+                <a href="https://shopee.com.br/A%C3%A7ucareiro-Saleiro-Porcelana-com-Colher-de-Porcelana-Cantinho-do-Caf%C3%A9-i.427063591.22932252580?sp_atk=e86cfe98-db63-46aa-8e9b-7d8b8f502a71&xptdk=e86cfe98-db63-46aa-8e9b-7d8b8f502a71" class="gift-item" target="_blank">AÇUCAREIRO</a>
+                <a href="https://www.amazon.com.br/dp/B09KM8Z3XC/?coliid=I6G6MQM9RO4S9&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">UTENSÍLIOS DE COZINHA</a>
+                <a href="https://www.amazon.com.br/dp/B0772XQ7XQ/?coliid=IGARAK88FM0CI&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE FACAS</a>
+                <a href="https://www.amazon.com.br/dp/B0BLZR6JFJ/?coliid=I1P25S6E7AC0UU&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">KIT ORGANIZADOR</a>
+                <a href="https://www.amazon.com.br/dp/B077PXCJ9T/?coliid=I1NND4X129B4L4&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">KIT POTES DE PLÁSTICO</a>
+                <a href="https://www.amazon.com.br/dp/B07BYWL17J/?coliid=ICROKW2AHJ8OM&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">ESCORREDOR DE MASSAS</a>
+                <a href="https://www.mercadolivre.com.br/kit-3-travessas-de-vidro-retangular-ctampa-diamond/up/MLBU3013489301?pdp_filters=item_id%3AMLB5287803280&matt_tool=38524122#origin=whatsapp&sid=whatsapp&wid=MLB5287803280" class="gift-item" target="_blank">KIT DE TRAVESSAS</a>
+                <a href="https://www.amazon.com.br/dp/B0CFYW6N9L/ref=sspa_dk_detail_6?pd_rd_i=B0CFYW6N9L&pd_rd_w=2mb3u&content-id=amzn1.sym.dd14805d-2347-4e14-a8a3-4a68eee2b6c8&pf_rd_p=dd14805d-2347-4e14-a8a3-4a68eee2b6c8&pf_rd_r=6RSBN6A2W65K7GSEDZVC&pd_rd_wg=4EBOS&pd_rd_r=8344e71a-489e-4b74-a591-cc189bbb6218&s=kitchen&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw&th=1" class="gift-item" target="_blank">JOGO DE TIGELAS</a>
+                <a href="https://www.mercadolivre.com.br/p/MLB48992051?pdp_filters=item_id:MLB4054922701&matt_tool=38524122#origin=share&sid=share&wid=MLB4054922701&action=whatsapp" class="gift-item" target="_blank">KIT DE FORMA PARA BOLO</a>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="title-wrapper">
+                <h3>ELETRODOMÉSTICOS</h3>
+                <svg class="title-sparks" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 28 Q 18 15 22 5" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 22 33 Q 32 23 42 16" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 30 40 Q 40 38 48 41" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                </svg>
+            </div>
+            
+            <div class="gift-grid">
+                <a href="https://www.amazon.com.br/dp/B08DFCF9HW/?coliid=ITRAZVY134LO1&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">LIQUIDIFICADOR</a>
+                <a href="https://www.amazon.com.br/dp/B07WGHXCJX/?coliid=I3J7C4DUYNK8SU&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">BATEDEIRA</a>
+                <a href="https://www.amazon.com.br/dp/B0765JVD5Q/?coliid=IUPBP26LGFUQG&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">SANDUICHEIRA</a>
+                <a href="https://www.amazon.com.br/dp/B09WWY48B7/?coliid=I2LFGNQ0JMBV48&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">GRILL</a>
+                <a href="https://www.amazon.com.br/Chaleira-El%C3%A9trica-Cadence-Pure-Inox/dp/B09X5W76Z3/ref=pd_sbs_d_sccl_3_3/140-7153715-5088138?pd_rd_w=pL5wR&content-id=amzn1.sym.369c7e6c-be97-41e7-a405-bca26488259c&pf_rd_p=369c7e6c-be97-41e7-a405-bca26488259c&pf_rd_r=BJ4C8PETSJHMYSSJ94VT&pd_rd_wg=klAId&pd_rd_r=3870c0fc-e8cd-47e3-8e9b-932e24d84f6c&pd_rd_i=B09X5W76Z3&th=1" class="gift-item" target="_blank">CHALEIRA ELÉTRICA</a>
+                <a href="https://www.amazon.com.br/Back-Decker-FX2700-Steam-Power/dp/B08B6DXH2R/ref=sr_1_16_mod_primary_new?crid=1FHNHA8FTMQEO&dib=eyJ2IjoiMSJ9.sQHiWjeIX34xBWAJk0vnTda0n3s_001_DpZUxfo6j-TwjxkLC3l5L94nzGs4_RQbCDuBdldKwwkhonz39jwcwT-35gZJhWJfnnznPhwilFeHkQfBrqnZlwlxYnghqw4SrwnfcwF2b6oqI-Nzs5txcb6a7hSVdTjcrpD4AsivOEYZD_HqggsHqf_xe-tIb2JNL08nDerb6uozZzVisRndXYeZNYGqSlkFCzIjG8PpVzU.qgwqAmvM9OyN0PzaB1IdIhH0Bp_jXisKd9st2PA-DDE&dib_tag=se&keywords=ferro+de+passar+roupa&qid=1708097662&s=home&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=FER%2Chome%2C199&sr=1-16" class="gift-item" target="_blank">FERRO DE PASSAR</a>
+                <a href="https://www.amazon.com.br/dp/B09B15RDJ6/?coliid=IHITV68IW1BI6&colid=13I0M2HPWVYOI&ref_=list_c_wl_lv_ov_lig_dp_it&th=1" class="gift-item" target="_blank">VENTILADOR</a>
+                <a href="https://www.amazon.com.br/dp/B08PPRYWZG/?coliid=I1ASLAGXLG3N5V&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">PROCESSADOR</a>
+                <a href="https://www.amazon.com.br/dp/B08BG687L9/?coliid=I1H5FBM2401NHC&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">MIXER</a>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="title-wrapper">
+                <h3>CASA, MESA E BANHO</h3>
+                <svg class="title-sparks" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 28 Q 18 15 22 5" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 22 33 Q 32 23 42 16" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 30 40 Q 40 38 48 41" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                </svg>
+            </div>
+            
+            <div class="gift-grid">
+                <a href="https://www.amazon.com.br/dp/B09Q7KCTW4/?coliid=I6LNJM8T8VC1S&colid=13W27D0R8PBMS&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE CAMA</a>
+                <a href="https://www.amazon.com.br/dp/B0CNHXV4QP/?coliid=I22F6Q5UFFKH5E&colid=13W27D0R8PBMS&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE CAMA - CINZA</a>
+                <a href="https://www.amazon.com.br/dp/B0CNHZQ9GL/?coliid=I3CSCNLP74NE45&colid=13W27D0R8PBMS&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE CAMA - AZUL</a>
+                <a href="https://www.amazon.com.br/dp/B092C4G8T9/?coliid=IV7MPGL4PUWPI&colid=13I0M2HPWVYOI&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">CAPA DE ALMOFADAS I</a>
+                <a href="https://www.amazon.com.br/dp/B09DGR4GGN/?coliid=I2TMDKAYG6RW7G&colid=13I0M2HPWVYOI&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">CAPA DE ALMOFADAS II</a>
+                <a href="https://www.amazon.com.br/banheiro-dispenser-lavabo-sabonete-liquido/dp/B0FN5VLLPW/ref=pd_day0_d_sccl_2_5/134-3376021-1809626?pd_rd_w=655sj&content-id=amzn1.sym.29c821dd-6758-444d-ac8c-e1e3cf8c2086&pf_rd_p=29c821dd-6758-444d-ac8c-e1e3cf8c2086&pf_rd_r=9J3HY6DWA8FN4VV2Z1AF&pd_rd_wg=fZk2a&pd_rd_r=71efdf8c-1ae9-4f77-b454-740f510c4ba4&pd_rd_i=B0FN5VLLPW&th=1" class="gift-item" target="_blank">KIT BANHEIRO</a>
+                <a href="https://www.amazon.com.br/dp/B0BBHG2PL1/?coliid=I2F4Y1Y8N1FNIX&colid=3EATM71CV5D7R&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">TÁBUA DE PASSAR ROUPA</a>
+                <a href="https://www.amazon.com.br/dp/B097C3BB8T/?coliid=IMQPUCIF5N9CO&colid=13W27D0R8PBMS&ref_=list_c_wl_lv_ov_lig_dp_it&th=1" class="gift-item" target="_blank">COBERTOR I</a>
+                <a href="https://www.amazon.com.br/dp/B097C4S3MR/?coliid=I3M7TBYVW5912P&colid=13W27D0R8PBMS&ref_=list_c_wl_lv_ov_lig_dp_it&th=1" class="gift-item" target="_blank">COBERTOR II</a>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="title-wrapper">
+                <h3>AGRADECIMENTOS</h3>
+                <svg class="title-sparks" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 12 28 Q 18 15 22 5" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 22 33 Q 32 23 42 16" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <path d="M 30 40 Q 40 38 48 41" stroke="var(--cinza-escuro)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                </svg>
+            </div>
+            
+            <p style="font-size: 1.4em;">Somos gratos a todos os nossos convidados pelo carinho e atenção.</p>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
