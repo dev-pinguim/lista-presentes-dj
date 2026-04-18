@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Presentes - Dani e João</title>
     <style>
-        /* Importando as fontes: Montserrat (textos) e Alex Brush (fonte cursiva elegante para os nomes) */
         @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600;700&display=swap');
 
         :root {
@@ -27,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* Cartão principal contínuo */
         .card {
             background-color: var(--card-bg);
             max-width: 850px;
@@ -37,9 +35,6 @@
             overflow: hidden;
         }
 
-        /* =========================================
-           CABEÇALHO
-           ========================================= */
         .hero {
             position: relative;
             padding: 80px 20px 60px 20px;
@@ -83,9 +78,6 @@
             stroke-linejoin: round;
         }
 
-        /* =========================================
-           TÍTULOS E RISQUINHOS (SVG)
-           ========================================= */
         .title-wrapper {
             position: relative;
             display: inline-block;
@@ -110,9 +102,6 @@
             right: -45px;
         }
 
-        /* =========================================
-           SEÇÕES GERAIS
-           ========================================= */
         section {
             display: flex;
             flex-direction: column;
@@ -127,7 +116,6 @@
 
         p { font-size: 1.1em; line-height: 1.6; max-width: 700px; margin: 0 auto 15px auto;}
 
-        /* Orientações */
         .orientacoes-list { text-align: left; max-width: 700px; margin: 0 auto; list-style: none; padding: 0; }
         .orientacoes-list li { margin-bottom: 25px; font-size: 1.1em; position: relative; padding-left: 20px; line-height: 1.6; }
         .orientacoes-list li::before { content: '•'; position: absolute; left: 0; font-weight: bold; }
@@ -135,7 +123,6 @@
         .map-link { color: var(--preto); text-decoration: underline; transition: color 0.3s; font-weight: bold;}
         .map-link:hover { color: var(--cinza-claro); }
 
-        /* Botão WhatsApp Inline */
         .whatsapp-inline-btn {
             display: inline-flex;
             align-items: center;
@@ -163,7 +150,6 @@
             margin-right: 6px;
         }
 
-        /* QR Code Embutido */
         .qr-code-img {
             width: 180px;
             height: 180px;
@@ -173,14 +159,10 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Importante */
         .importante-box { border: 2px solid var(--cinza-escuro); padding: 40px; max-width: 650px; border-radius: 20px; }
         .verse { font-style: italic; margin-top: 30px; font-size: 1.1em; font-weight: normal; }
         .reference { font-weight: bold; display: block; margin-top: 10px; }
 
-        /* =========================================
-           PALETA DE CORES
-           ========================================= */
         .palette-container { 
             display: flex; 
             gap: 40px; 
@@ -202,19 +184,14 @@
         .c-branco { background-color: var(--branco); border: 2px solid #E0E0E0; }
         .color-label { font-weight: 700; font-size: 1em; text-align: center; color: var(--preto); }
 
-        /* Grid de Presentes */
         .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; width: 100%; text-align: center; }
         .gift-item { font-size: 1.1em; padding: 10px; text-transform: uppercase; text-decoration: underline; color: #000; display: block; transition: color 0.3s; }
         .gift-item:hover { color: var(--cinza-claro); }
         a { text-decoration: none; }
 
-        /* Efeito de surgimento ao rolar */
         .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* =========================================
-           AJUSTES PARA CELULAR (MOBILE)
-           ========================================= */
         @media(max-width: 600px) {
             body { 
                 padding: 0; 
@@ -405,21 +382,21 @@
             <div class="gift-grid">
                 <a href="https://www.amazon.com.br/dp/B0BL1DN1RK/?coliid=IJRKJ2ACRZHVA&colid=1OZGP8P8JUKNP&psc=0&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">GARRAFA DE CAFÉ</a>
                 <a href="https://www.mercadolivre.com.br/p/MLB51910203?pdp_filters=item_id:MLB5255505336&matt_tool=38524122#origin=share&sid=share&wid=MLB5255505336&action=whatsapp" class="gift-item" target="_blank">SALEIRO</a>
-                <a href="https://www.mercadolivre.com.br/p/MLB37847894?pdp_filters=item_id:MLB5391282948&matt_tool=38524122#origin=share&sid=share&wid=MLB5391282948&action=whatsapp" class="gift-item" target="_blank">AÇUCAREIRO</a>
                 <a href="https://www.mercadolivre.com.br/p/MLB37246326?pdp_filters=item_id:MLB3733990167&matt_tool=38524122#origin=share&sid=share&wid=MLB3733990167&action=whatsapp" class="gift-item" target="_blank">KIT DE POTES</a>
                 <a href="https://www.mercadolivre.com.br/p/MLB25764134?pdp_filters=item_id:MLB6427773990&matt_tool=38524122#origin=share&sid=share&wid=MLB6427773990&action=whatsapp" class="gift-item" target="_blank">KIT DE COPOS</a>
                 <a href="https://www.amazon.com.br/dp/B076VST33W?ref=cm_sw_r_cso_wa_apan_dp_LIGHTSABER1RXGTWNVZB&ref_=cm_sw_r_cso_wa_apan_dp_LIGHTSABER1RXGTWNVZB&social_share=cm_sw_r_cso_wa_apan_dp_LIGHTSABER1RXGTWNVZB&th=1" class="gift-item" target="_blank">KIT CANECAS</a>
                 <a href="https://www.amazon.com.br/dp/B0CKDZ5SL7?ref=cm_sw_r_cso_wa_apan_dp_4V0A8ZZB1T4TA5NZ44QA&ref_=cm_sw_r_cso_wa_apan_dp_4V0A8ZZB1T4TA5NZ44QA&social_share=cm_sw_r_cso_wa_apan_dp_4V0A8ZZB1T4TA5NZ44QA" class="gift-item" target="_blank">JOGO DE PRATOS</a>
+                <a href="https://www.mercadolivre.com.br/wok-frigideira-funda-antiaderente-24cm-brinox-preta-23l-cor-grafite/p/MLB28913941?pdp_filters=item_id%3AMLB4154540257&matt_tool=38524122#origin=whatsapp&sid=whatsapp&wid=MLB4154540257" class="gift-item" target="_blank">FRIGIDEIRA FUNDA</a>
                 <a href="https://www.amazon.com.br/dp/B0BTMS84Y9/?coliid=I1HZN7FQI4XHYA&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">PORTA TEMPEROS</a>
                 <a href="https://www.amazon.com.br/dp/B07R5PWMNJ/?coliid=I3QZ81ZV9RHH2R&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">ESCORREDOR DE PΙΑ</a>
                 <a href="https://www.amazon.com.br/dp/B076X6SXH7/?coliid=IOLHAGQPYVAO&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE TAÇAS</a>
                 <a href="https://www.amazon.com.br/dp/B0CHW28WNF/?coliid=IHE2JJEP8T5U6&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO UTENSÍLIOS</a>
                 <a href="https://www.amazon.com.br/dp/B07TTNZG21/?coliid=I1YYCZL80MVHIO&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE TAÇAS DE SOBREMESA</a>
-                <a href="https://www.amazon.com.br/dp/B09418784M/?coliid=I12VIAJ34750M6&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE PRATOS RASO</a>
+                <a href="https://www.amazon.com.br/dp/B0FYHZT78Z?ref=cm_sw_r_cso_wa_apan_dp_8VDV9KK4MBG4QZM3WTNK&ref_=cm_sw_r_cso_wa_apan_dp_8VDV9KK4MBG4QZM3WTNK&social_share=cm_sw_r_cso_wa_apan_dp_8VDV9KK4MBG4QZM3WTNK" class="gift-item" target="_blank">KIT DE PRATOS I</a>                
+                <a href="https://www.amazon.com.br/dp/B0CKHJ1SCB?ref=cm_sw_r_cp_ud_dp_FFEQK4QWA2PMFW0SMT0R&ref_=cm_sw_r_cp_ud_dp_FFEQK4QWA2PMFW0SMT0R&social_share=cm_sw_r_cp_ud_dp_FFEQK4QWA2PMFW0SMT0R" class="gift-item" target="_blank">KIT DE PRATOS II</a>
                 <a href="https://www.amazon.com.br/dp/B07R2N8BJ7/?coliid=ISQBTEVBUQ715&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">TAPIOQUEIRA</a>
                 <a href="https://www.amazon.com.br/dp/B0C1MK3178/?coliid=I1LRMC67RHB7SG&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">PROCESSADOR DE ALIMENTOS</a>
                 <a href="https://www.amazon.com.br/dp/B07QYPLPTC/?coliid=I2VEYEAERC7UM0&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">FRIGIDEIRA</a>
-                <a href="https://www.amazon.com.br/dp/B0778V9J93/?coliid=I1WV6XLCTMDPY5&colid=1OZGP8P8JUKNP&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE PRATOS FUNDO</a>
                 <a href="https://www.amazon.com.br/Faqueiro-Inox-Buzios-Tramontina-23799/dp/B0789M146B/ref=sr_1_3?crid=1N8HF0AF5BY5T&dib=eyJ2IjoiMSJ9.s3TZ3NmdtUGxTS7HJk65MIuR0hsmlISnH0nKJoBKYa-Du-HLqb6SYLfpEIgGP-6ttapM6GmU8MC8GAkzLt0XKLKKQccau1i8euVZZfBKoppBvssFbW9KRn4HfvnRJkJ0Xfx95ffpBrrtGcOjLN-SCRCnPjVEYa1sTHVuzo-NYJqP3UJwblryGzIIu8pJ8FdiJPM6x0ACWahKha9NGC4T2GJdJPR3WoFMUUn4R3IKEGo.6zoW8BrnCc3UPFIz6I9BaEKuuK4JBir3TjJwGrg5NDs&dib_tag=se&keywords=jogo+de+talheres&qid=1772672208&s=kitchen&sprefix=jogo+ta%2Ckitchen%2C347&sr=1-3" class="gift-item" target="_blank">JOGO DE TALHERES</a>
                 <a href="https://www.havan.com.br/jogo-de-assadeiras-retangular-havan-casa-oslo-3-pecas-branco/p" class="gift-item" target="_blank">JOGO DE TRAVESSAS</a>
                 <a href="https://www.amazon.com.br/dp/B008R7SRXU/?coliid=IVIVPXYVBTMJJ&colid=1OZGP8P8JUKNP&ref_=list_c_wl_lv_ov_lig_dp_it&th=1" class="gift-item" target="_blank">FORMA DE BOLO</a>
@@ -455,10 +432,8 @@
                 <a href="https://www.amazon.com.br/dp/B0765JVD5Q/?coliid=IUPBP26LGFUQG&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">SANDUICHEIRA</a>
                 <a href="https://www.amazon.com.br/dp/B09WWY48B7/?coliid=I2LFGNQ0JMBV48&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">GRILL</a>
                 <a href="https://www.amazon.com.br/Chaleira-El%C3%A9trica-Cadence-Pure-Inox/dp/B09X5W76Z3/ref=pd_sbs_d_sccl_3_3/140-7153715-5088138?pd_rd_w=pL5wR&content-id=amzn1.sym.369c7e6c-be97-41e7-a405-bca26488259c&pf_rd_p=369c7e6c-be97-41e7-a405-bca26488259c&pf_rd_r=BJ4C8PETSJHMYSSJ94VT&pd_rd_wg=klAId&pd_rd_r=3870c0fc-e8cd-47e3-8e9b-932e24d84f6c&pd_rd_i=B09X5W76Z3&th=1" class="gift-item" target="_blank">CHALEIRA ELÉTRICA</a>
-                <a href="https://www.amazon.com.br/Back-Decker-FX2700-Steam-Power/dp/B08B6DXH2R/ref=sr_1_16_mod_primary_new?crid=1FHNHA8FTMQEO&dib=eyJ2IjoiMSJ9.sQHiWjeIX34xBWAJk0vnTda0n3s_001_DpZUxfo6j-TwjxkLC3l5L94nzGs4_RQbCDuBdldKwwkhonz39jwcwT-35gZJhWJfnnznPhwilFeHkQfBrqnZlwlxYnghqw4SrwnfcwF2b6oqI-Nzs5txcb6a7hSVdTjcrpD4AsivOEYZD_HqggsHqf_xe-tIb2JNL08nDerb6uozZzVisRndXYeZNYGqSlkFCzIjG8PpVzU.qgwqAmvM9OyN0PzaB1IdIhH0Bp_jXisKd9st2PA-DDE&dib_tag=se&keywords=ferro+de+passar+roupa&qid=1708097662&s=home&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=FER%2Chome%2C199&sr=1-16" class="gift-item" target="_blank">FERRO DE PASSAR</a>
                 <a href="https://www.amazon.com.br/dp/B09B15RDJ6/?coliid=IHITV68IW1BI6&colid=13I0M2HPWVYOI&ref_=list_c_wl_lv_ov_lig_dp_it&th=1" class="gift-item" target="_blank">VENTILADOR</a>
                 <a href="https://www.amazon.com.br/dp/B08PPRYWZG/?coliid=I1ASLAGXLG3N5V&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">PROCESSADOR</a>
-                <a href="https://www.amazon.com.br/dp/B08BG687L9/?coliid=I1H5FBM2401NHC&colid=1QCNDBHMQ0GAX&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">MIXER</a>
             </div>
         </section>
 
@@ -473,15 +448,16 @@
             </div>
             
             <div class="gift-grid">
-                <a href="https://www.amazon.com.br/dp/B09Q7KCTW4/?coliid=I6LNJM8T8VC1S&colid=13W27D0R8PBMS&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE CAMA</a>
+                <a href="https://www.havan.com.br/jogo-de-cama-casal-napoli-havan-casa-4-pcs-cubos-geomtricos-azul/p" class="gift-item" target="_blank">JOGO DE CAMA - GEOMETRICO</a>
+                <a href="https://www.amazon.com.br/dp/B09Q7KCTW4/?coliid=I6LNJM8T8VC1S&colid=13W27D0R8PBMS&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE CAMA - BRANCO</a>
                 <a href="https://www.amazon.com.br/dp/B0CNHXV4QP/?coliid=I22F6Q5UFFKH5E&colid=13W27D0R8PBMS&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE CAMA - CINZA</a>
                 <a href="https://www.amazon.com.br/dp/B0CNHZQ9GL/?coliid=I3CSCNLP74NE45&colid=13W27D0R8PBMS&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">JOGO DE CAMA - AZUL</a>
                 <a href="https://www.amazon.com.br/dp/B092C4G8T9/?coliid=IV7MPGL4PUWPI&colid=13I0M2HPWVYOI&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">CAPA DE ALMOFADAS I</a>
-                <a href="https://www.amazon.com.br/dp/B09DGR4GGN/?coliid=I2TMDKAYG6RW7G&colid=13I0M2HPWVYOI&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">CAPA DE ALMOFADAS II</a>
                 <a href="https://www.amazon.com.br/banheiro-dispenser-lavabo-sabonete-liquido/dp/B0FN5VLLPW/ref=pd_day0_d_sccl_2_5/134-3376021-1809626?pd_rd_w=655sj&content-id=amzn1.sym.29c821dd-6758-444d-ac8c-e1e3cf8c2086&pf_rd_p=29c821dd-6758-444d-ac8c-e1e3cf8c2086&pf_rd_r=9J3HY6DWA8FN4VV2Z1AF&pd_rd_wg=fZk2a&pd_rd_r=71efdf8c-1ae9-4f77-b454-740f510c4ba4&pd_rd_i=B0FN5VLLPW&th=1" class="gift-item" target="_blank">KIT BANHEIRO</a>
                 <a href="https://www.amazon.com.br/dp/B0BBHG2PL1/?coliid=I2F4Y1Y8N1FNIX&colid=3EATM71CV5D7R&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" class="gift-item" target="_blank">TÁBUA DE PASSAR ROUPA</a>
                 <a href="https://www.amazon.com.br/dp/B097C3BB8T/?coliid=IMQPUCIF5N9CO&colid=13W27D0R8PBMS&ref_=list_c_wl_lv_ov_lig_dp_it&th=1" class="gift-item" target="_blank">COBERTOR I</a>
                 <a href="https://www.amazon.com.br/dp/B097C4S3MR/?coliid=I3M7TBYVW5912P&colid=13W27D0R8PBMS&ref_=list_c_wl_lv_ov_lig_dp_it&th=1" class="gift-item" target="_blank">COBERTOR II</a>
+                <a href="https://produto.mercadolivre.com.br/MLB-6162675024-jogo-passadeira-3-pecas-47x140cm-2-tapetes-47x70cm-_JM?matt_tool=38524122#origin=whatsapp&sid=whatsapp" class="gift-item" target="_blank">TAPETES DE COZINHA</a>
             </div>
         </section>
 
